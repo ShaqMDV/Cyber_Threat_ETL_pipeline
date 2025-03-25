@@ -13,7 +13,7 @@ We will be pulling data from a kaggle dataset that encompasses global cyber secu
 
 import pandas as pd
 import csv
-from sqlalchemy import create_engine
+import sqlite3
 
 # Reading in the information from a CSV and into a dataframe
 
@@ -22,9 +22,10 @@ from sqlalchemy import create_engine
 #     for row in spamreader:
 #         print(', '.join(row))
 
-source = 'Global_Cybersecurity_Threats_2015-2024.csv'
 
-df = pd.read_csv(source)
+def extract_data(source):
+    print("Extracting data...")
+    return pd.read_csv(source)
 
 # preview the data 
 # print(df.head())
@@ -32,19 +33,33 @@ df = pd.read_csv(source)
 # Lets transform the data, we may clean, omit or add data where required
 
 # Here we are selecting the relevent columns 
-df_filtered = df[['Country', 'Year', 'Attack Type', 'Target Industry', 'Financial Loss (in Million $)', 'Attack Source', 'Security Vulnerability Type', 'Defense Mechanism Used', 'Incident Resolution Time (in Hours)']]
+def transform_data(df):
+    print("Transforming data...")
+    df = df[['Country', 'Year', 'Attack Type', 'Target Industry', 'Financial Loss (in Million $)', 'Attack Source', 'Security Vulnerability Type', 'Defense Mechanism Used', 'Incident Resolution Time (in Hours)']]
 
 # Handle any missing values in the following line
-df_filtered = df_filtered.dropna()
+    df = df.dropna()
 
 # This dataset is fairly clean already, so no adjustments really need to do at this point in time
+    return df
 
 # Lets store the data in a SQLite database
 
 # Creating the database connection
-engine = create_engine('sqlite:///cyber_threats_data.db')
+def load_data(df, db_name):
+    print ("Loading cleaned data into database... ")
+    con = sqlite3.connect(db_name)
 
 # Loading the data in the database
-df_filtered.to_sql('Cyber_threat_cases', con = engine, if_exists ='replace', index = False)
+    df.to_sql('Cyber_threat_cases', con , if_exists ='replace', index = False)
 
-print("\nCyber threat data loaded into database successfully\n")
+def etl_together():
+    source = 'Global_Cybersecurity_Threats_2015-2024.csv'
+    db_name = 'Cyber_Threats_data.db'
+
+    data = extract_data(source)
+    transformed_data = transform_data(data)
+    load_data(transformed_data, db_name)
+    print("\nETL pipeline finished\n")
+
+etl_together()
