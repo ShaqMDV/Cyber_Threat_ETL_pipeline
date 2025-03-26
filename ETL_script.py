@@ -35,7 +35,7 @@ def extract_data(source):
 # Here we are selecting the relevent columns 
 def transform_data(df):
     print("Transforming data...")
-    df = df[['Country', 'Year', 'Attack Type', 'Target Industry', 'Financial Loss (in Million $)', 'Attack Source', 'Security Vulnerability Type', 'Defense Mechanism Used', 'Incident Resolution Time (in Hours)']]
+    df = df[['Country', 'Year', 'Attack_Type', 'Target_Industry', 'Financial_Loss(Millions)', 'Attack_Source', 'Security_Vulnerability_Type', 'Defense_Mechanism_Used', 'Incident_Resolution_Time(Hours)']]
 
 # Handle any missing values in the following line
     df = df.dropna()

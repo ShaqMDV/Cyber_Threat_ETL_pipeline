@@ -1,4 +1,4 @@
-Country,Year,Attack Type,Target Industry,Financial Loss (in Million $),Number of Affected Users,Attack Source,Security Vulnerability Type,Defense Mechanism Used,Incident Resolution Time (in Hours)
+Country,Year,Attack_Type,Target_Industry,Financial_Loss(Millions),Number_of_Affected_Users,Attack_Source,Security_Vulnerability_Type,Defense_Mechanism_Used,Incident_Resolution_Time(Hours)
 China,2019,Phishing,Education,80.53,773169,Hacker Group,Unpatched Software,VPN,63
 China,2019,Ransomware,Retail,62.19,295961,Hacker Group,Unpatched Software,Firewall,71
 India,2017,Man-in-the-Middle,IT,38.65,605895,Hacker Group,Weak Passwords,VPN,20
