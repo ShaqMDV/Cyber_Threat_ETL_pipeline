@@ -15,27 +15,16 @@ import pandas as pd
 import csv
 import sqlite3
 
-# Reading in the information from a CSV and into a dataframe
-
-# with open('Global_Cybersecurity_Threats_2015-2024.csv', newline='') as csvfile:
-#     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-#     for row in spamreader:
-#         print(', '.join(row))
-
-
 def extract_data(source):
     print("Extracting data...")
     return pd.read_csv(source)
-
-# preview the data 
-# print(df.head())
 
 # Lets transform the data, we may clean, omit or add data where required
 
 # Here we are selecting the relevent columns 
 def transform_data(df):
     print("Transforming data...")
-    df = df[['Country', 'Year', 'Attack_Type', 'Target_Industry', 'Financial_Loss(Millions)', 'Attack_Source', 'Security_Vulnerability_Type', 'Defense_Mechanism_Used', 'Incident_Resolution_Time(Hours)']]
+    df = df[['Country', 'Year', 'Attack_Type', 'Target_Industry', ' s', 'Attack_Source', 'Security_Vulnerability_Type', 'Defense_Mechanism_Used', 'Incident_Resolution_Time_Hours']]
 
 # Handle any missing values in the following line
     df = df.dropna()
